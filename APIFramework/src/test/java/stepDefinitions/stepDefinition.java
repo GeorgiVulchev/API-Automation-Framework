@@ -11,6 +11,8 @@ import io.cucumber.java.en.When;
 
 import pojo.AddPlace;
 import pojo.Location;
+import resources.TestDataBuild;
+import resources.Utils;
 
 import static io.restassured.RestAssured.given;
 import io.restassured.builder.RequestSpecBuilder;
@@ -21,39 +23,19 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-public class stepDefinition {
+public class stepDefinition extends Utils{
 	RequestSpecification request;
 	ResponseSpecification responseSpecification;
 	Response response;
+	TestDataBuild data = new TestDataBuild();
 
 	@Given("Add Place Payload")
 	public void add_place_payload() {
-		AddPlace addPlace = new AddPlace();
-		Location location = new Location();
-		location.setLat(-38.383404);
-		location.setLng(-33.427362);
-
-		List<String> listOfTypes = new ArrayList<String>();
-		listOfTypes.add("shoe park");
-		listOfTypes.add("shop");
-
-		addPlace.setAccuracy(50);
-		addPlace.setAddress("address15");
-		addPlace.setLanguage("Bulgarian");
-		addPlace.setPhone_number("1234567810");
-		addPlace.setWebsite("https://website.com");
-		addPlace.setName("George");
-		addPlace.setTypes(listOfTypes);
-		addPlace.setLocation(location);
-
-		RequestSpecification requestSpecification = new RequestSpecBuilder()
-				.setBaseUri("https://rahulshettyacademy.com").addQueryParam("key", "qaclick123")
-				.setContentType(ContentType.JSON).build();
 
 		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
 				.build();
 
-		request = given().spec(requestSpecification).body(addPlace);
+		request = given().spec(requestSpecification()).body(data.addPlacePayload());
 	}
 
 	@When("user calls {string} with Post http request")
