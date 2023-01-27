@@ -1,0 +1,47 @@
+Request method:	POST
+Request URI:	https://rahulshettyacademy.com/maps/api/place/add/json?key=qaclick123
+Proxy:			<none>
+Request params:	<none>
+Query params:	key=qaclick123
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "accuracy": 50,
+    "name": "John",
+    "phone_number": "1234567810",
+    "address": "World cross center",
+    "website": "https://website.com",
+    "language": "<lanugage>",
+    "location": {
+        "lat": -38.383404,
+        "lng": -33.427362
+    },
+    "types": [
+        "shoe park",
+        "shop"
+    ]
+}
+HTTP/1.1 200 OK
+Date: Fri, 27 Jan 2023 12:25:43 GMT
+Server: Apache/2.4.41 (Ubuntu)
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
+Content-Length: 194
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+
+{
+    "status": "OK",
+    "place_id": "df3adca9df7bb5399080c05aafbab416",
+    "scope": "APP",
+    "reference": "78c489fed14bb6866c335083157d0ac878c489fed14bb6866c335083157d0ac8",
+    "id": "78c489fed14bb6866c335083157d0ac8"
+}
