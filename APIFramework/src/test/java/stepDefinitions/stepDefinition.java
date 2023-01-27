@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,16 +31,15 @@ public class stepDefinition extends Utils{
 	TestDataBuild data = new TestDataBuild();
 
 	@Given("Add Place Payload")
-	public void add_place_payload() {
-
-		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
-				.build();
-
+	public void add_place_payload() throws FileNotFoundException {
 		request = given().spec(requestSpecification()).body(data.addPlacePayload());
 	}
 
 	@When("user calls {string} with Post http request")
 	public void user_calls_with_post_http_request(String string) {
+		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
+				.build();
+		
 		response = request.when().post("/maps/api/place/add/json").then().spec(responseSpecification).extract()
 				.response();
 	}
