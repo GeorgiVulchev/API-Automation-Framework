@@ -1,22 +1,16 @@
 package stepDefinitions;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.io.IOException;
 import static org.junit.Assert.*;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import pojo.AddPlace;
-import pojo.Location;
 import resources.TestDataBuild;
 import resources.Utils;
 
 import static io.restassured.RestAssured.given;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -30,9 +24,9 @@ public class stepDefinition extends Utils{
 	Response response;
 	TestDataBuild data = new TestDataBuild();
 
-	@Given("Add Place Payload")
-	public void add_place_payload() throws FileNotFoundException {
-		request = given().spec(requestSpecification()).body(data.addPlacePayload());
+	@Given("Add Place Payload with {string} {string} {string}")
+	public void add_place_payload_with(String name, String language, String address) throws IOException {
+		request = given().spec(requestSpecification()).body(data.addPlacePayload(name, language, address));
 	}
 
 	@When("user calls {string} with Post http request")

@@ -8,7 +8,7 @@ import pojo.Location;
 
 public class TestDataBuild {
 
-	public AddPlace addPlacePayload() {
+	public AddPlace addPlacePayload(String name, String language, String address) {
 		AddPlace addPlace = new AddPlace();
 		Location location = new Location();
 		location.setLat(-38.383404);
@@ -19,11 +19,11 @@ public class TestDataBuild {
 		listOfTypes.add("shop");
 
 		addPlace.setAccuracy(50);
-		addPlace.setAddress("address15");
-		addPlace.setLanguage("Bulgarian");
+		addPlace.setAddress(address);
+		addPlace.setLanguage(language);
 		addPlace.setPhone_number("1234567810");
 		addPlace.setWebsite("https://website.com");
-		addPlace.setName("George");
+		addPlace.setName(name);
 		addPlace.setTypes(listOfTypes);
 		addPlace.setLocation(location);
 		
