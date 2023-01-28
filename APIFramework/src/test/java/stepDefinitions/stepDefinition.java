@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import resources.APIResources;
 import resources.TestDataBuild;
 import resources.Utils;
 
@@ -30,7 +30,10 @@ public class stepDefinition extends Utils{
 	}
 
 	@When("user calls {string} with Post http request")
-	public void user_calls_with_post_http_request(String string) {
+	public void user_calls_with_post_http_request(String resource) {
+		APIResources resourceAPI = APIResources.valueOf(resource);
+		resourceAPI.getResource();
+		
 		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
 				.build();
 		
