@@ -18,7 +18,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-public class stepDefinition extends Utils{
+public class stepDefinition extends Utils {
 	RequestSpecification request;
 	ResponseSpecification responseSpecification;
 	Response response;
@@ -29,16 +29,18 @@ public class stepDefinition extends Utils{
 		request = given().spec(requestSpecification()).body(data.addPlacePayload(name, language, address));
 	}
 
-	@When("user calls {string} with Post http request")
-	public void user_calls_with_post_http_request(String resource) {
+	@When("user calls {string} with {string} http request")
+	public void user_calls_with_http_request(String resource, String httpMethod) {
 		APIResources resourceAPI = APIResources.valueOf(resource);
 		resourceAPI.getResource();
-		
+
 		responseSpecification = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
 				.build();
-		
-		response = request.when().post("/maps/api/place/add/json").then().spec(responseSpecification).extract()
-				.response();
+
+		if (httpMethod.equalsIgnoreCase("POST"))
+			response = request.when().post(resourceAPI.getResource());
+		else if (httpMethod.equalsIgnoreCase("GET"))
+			response = request.when().get(resourceAPI.getResource());
 	}
 
 	@Then("the API call is success with status code {int}")
