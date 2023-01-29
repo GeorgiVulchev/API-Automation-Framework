@@ -12,3 +12,9 @@ Examples:
 | name | language | address            |
 | John | English  | World cross center |
 #| Jane | Spanish  | Sea cross center   |
+
+Scenario: Verify if DeletePlace functionallity is working
+Given DeletePlace payload
+When user calls "deletePlaceAPI" with "POST" http request
+Then the API call is success with status code 200
+And the "status" in the response body is "OK"
